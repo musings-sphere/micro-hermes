@@ -3,8 +3,8 @@
 ## hermes - email microservice for musings
 
 [![CircleCI](https://circleci.com/gh/musings-sphere/micro-hermes/tree/main.svg?style=svg)](https://circleci.com/gh/musings-sphere/micro-hermes/tree/main)
-[![Build](https://github.com/musings-sphere/musings-api/actions/workflows/build.yml/badge.svg)](https://github.com/musings-sphere/musings-api/actions/workflows/build.yml)
-[![CodeQL](https://github.com/musings-sphere/musings-api/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/musings-sphere/musings-api/actions/workflows/codeql-analysis.yml)
+[![Build](https://github.com/musings-sphere/micro-hermes/actions/workflows/build.yml/badge.svg)](https://github.com/musings-sphere/micro-hermes/actions/workflows/build.yml)
+[![code-ql](https://github.com/musings-sphere/micro-hermes/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/musings-sphere/micro-hermes/actions/workflows/codeql-analysis.yml)
 [![Maintainability](https://api.codeclimate.com/v1/badges/f9dbcd79dc4a92a049d5/maintainability)](https://codeclimate.com/github/musings-sphere/micro-hermes/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/f9dbcd79dc4a92a049d5/test_coverage)](https://codeclimate.com/github/musings-sphere/micro-hermes/test_coverage)
 [![Known Vulnerabilities](https://snyk.io/package/npm/snyk/badge.svg)](https://snyk.io/package/npm/snyk)
