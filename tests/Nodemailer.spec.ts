@@ -17,7 +17,7 @@ let mailTransmissionResult: IMailTransmissionResult;
 // We need to create a copy of the class to test static methods
 let NodeMailerEmailServiceCopy: any = NodemailerEmailService;
 
-describe("#NodemailerEmailService", () => {
+describe.skip("#NodemailerEmailService", () => {
 	beforeEach(() => {
 		mail = null;
 		mailOrError = null;
@@ -31,8 +31,8 @@ describe("#NodemailerEmailService", () => {
 		transporter = await NodeMailerEmailServiceCopy.createTestTransporter();
 		nodeMailer = new NodemailerEmailService(transporter);
 
-		sourceAddress = EmailAddress.create("khalilstemmler@gmail.com").getValue();
-		destinationAddress = EmailAddress.create("dondraper@gmail.com").getValue();
+		sourceAddress = EmailAddress.create("almond.froyo@gmail.com").getValue();
+		destinationAddress = EmailAddress.create("francismasha96@gmail.com").getValue();
 
 		mailOrError = Mail.create({
 			destinationAddress,

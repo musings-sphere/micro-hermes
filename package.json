@@ -31,9 +31,11 @@
     "app-root-path": "^3.0.0",
     "clf-date": "^0.2.0",
     "express": "^4.17.1",
+    "googleapis": "^85.0.0",
     "node-mailjet": "^3.3.4",
     "nodemailer": "^6.6.3",
     "reflect-metadata": "^0.1.13",
+    "twing": "^5.0.2",
     "winston": "^3.3.3"
   },
   "devDependencies": {

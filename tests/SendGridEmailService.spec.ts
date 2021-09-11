@@ -27,8 +27,8 @@ describe("#SendGridEmailService", () => {
 	test("Can send mail from a nodemailer instance", async () => {
 		mailer = new SendGridEmailService("hello", sendgridMock);
 
-		sourceAddress = EmailAddress.create("khalilstemmler@gmail.com").getValue();
-		destinationAddress = EmailAddress.create("dondraper@gmail.com").getValue();
+		sourceAddress = EmailAddress.create("blah@gmail.com").getValue();
+		destinationAddress = EmailAddress.create("blah2@gmail.com").getValue();
 
 		mailOrError = Mail.create({
 			destinationAddress,
@@ -44,10 +44,10 @@ describe("#SendGridEmailService", () => {
 
 		expect(sendgridMock.send.mock.calls[0]).toEqual([
 			{
-				from: "khalilstemmler@gmail.com",
+				from: "blah@gmail.com",
 				subject: "Hello world!",
 				text: "This is a message body",
-				to: "dondraper@gmail.com",
+				to: "blah2@gmail.com",
 			},
 		]);
 		expect(sendgridMock.send.mock.calls.length).toBe(1);

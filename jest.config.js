@@ -12,6 +12,7 @@ module.exports = {
     "src/**/*.ts",
     "!src/**/interface.d.ts",
     "!src/**/*interfaces.d.ts",
+    "!src/**/*.d.ts",
   ],
   coverageThreshold: {
     global: {
