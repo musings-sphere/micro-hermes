@@ -9,38 +9,37 @@ import { NodemailerEmailService } from "./services/nodemailer/NodemailerEmailSer
 const logger = new AppLogger("Main");
 
 const main = async (): Promise<void> => {
-  try {
-    const nodeMailerTransporter =
-      await NodemailerEmailService.createTestTransporter();
-    const mailer = new NodemailerEmailService(nodeMailerTransporter);
-    // const mailer = new SendGridEmailService('sdfdjhfkjsdhfksdhkfjshdkjf', sgMail)
-    logger.log("Starting...");
+	logger.log("Starting.");
+	try {
+		const nodeMailerTransporter =
+			await NodemailerEmailService.createTransporter();
+		const mailer = new NodemailerEmailService(nodeMailerTransporter);
+		// const mailer = new SendGridEmailService('sdfdjhfkjsdhfksdhkfjshdkjf', sgMail)
+		logger.log("Starting...");
 
-    const sourceAddressOrError = EmailAddress.create(
-      "almond.froyo@gmail.com"
-    );
-    const destinationAddressOrError = EmailAddress.create(
-      "francismasha96@gmail.com"
-    );
-    const sourceAddress = sourceAddressOrError.getValue();
-    const destinationAddress = destinationAddressOrError.getValue();
+		const sourceAddressOrError = EmailAddress.create("almond.froyo@gmail.com");
+		const destinationAddressOrError = EmailAddress.create(
+			"francismasha96@gmail.com"
+		);
+		const sourceAddress = sourceAddressOrError.getValue();
+		const destinationAddress = destinationAddressOrError.getValue();
 
-    const mailOrError = Mail.create({
-      sourceAddress,
-      destinationAddress,
-      messageTitle: "Hello world!",
-      messageBody: "This is an email Im sending.",
-    });
+		const mailOrError = Mail.create({
+			sourceAddress,
+			destinationAddress,
+			messageTitle: "Hello world!",
+			messageBody: "This is an email Im sending.",
+		});
 
-    const mail = mailOrError.getValue();
+		const mail = mailOrError.getValue();
 
-    const result = await mailer.sendMail(mail);
-    logger.log(JSON.stringify(result));
-  } catch (err: any) {
-    logger.error(`[main] ${err.message}`, err.stack);
-  }
+		const result = await mailer.sendMail(mail);
+		logger.log(JSON.stringify(result));
+	} catch (err: any) {
+		logger.error(err.message);
+	}
 };
 
 main()
 	.then(() => logger.log("Hermes has started running..."))
-	.catch((e) => logger.error(e.message, e.stack));
+	.catch((e) => logger.error(e.message));

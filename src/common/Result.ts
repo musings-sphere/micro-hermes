@@ -30,14 +30,13 @@ export class Result<T> {
 
 	public getValue(): T {
 		if (!this.isSuccess) {
-			logger.error(this.error);
 			throw new Error(`Cant retrieve the value from a failed result.`);
 		}
 
 		return this._value;
 	}
 
-	public static ok<U>(value: U): Result<U> {
+	public static ok<U>(value?: U): Result<U> {
 		return new Result<U>(true, undefined, value);
 	}
 

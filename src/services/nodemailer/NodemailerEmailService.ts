@@ -10,7 +10,6 @@ import { ITransporterConfig } from "./ITransporterConfig";
 
 const {
 	google: { mailClientId, mailClientSecret, mailRefreshToken },
-	isProduction,
 } = config;
 
 export class NodemailerEmailService implements IMailService {
@@ -21,9 +20,7 @@ export class NodemailerEmailService implements IMailService {
 	}
 
 	// Factory method
-	public static async createTransporter(
-		transporterConfig: ITransporterConfig
-	): Promise<Transporter> {
+	public static async createTransporter(): Promise<Transporter> {
 		const { OAuth2 } = google.auth;
 		const oauth2Client = new OAuth2(
 			mailClientId,
@@ -35,41 +32,29 @@ export class NodemailerEmailService implements IMailService {
 			refresh_token: mailRefreshToken,
 		});
 
-		const accessToken = oauth2Client.getAccessToken();
-
-		if (isProduction) {
-			return createTransport({
-				service: "gmail",
-				auth: {
-					accessToken,
-					type: "OAuth2",
-					user: "almond.froyo@gmail.com",
-					clientId: mailClientId,
-					clientSecret: mailClientSecret,
-					refreshToken: mailRefreshToken,
-				},
-				tls: {
-					rejectUnauthorized: false,
-				},
-			} as any);
-		}
+		const accessToken = await oauth2Client.getAccessToken();
 
 		return createTransport({
-			host: transporterConfig.host,
-			port: transporterConfig.port,
-			secure: transporterConfig.secure,
+			service: "gmail",
 			auth: {
-				user: transporterConfig.userName,
-				pass: transporterConfig.password,
+				accessToken: accessToken.token,
+				type: "OAuth2",
+				user: "almond.froyo@gmail.com",
+				clientId: mailClientId,
+				clientSecret: mailClientSecret,
+				refreshToken: mailRefreshToken,
 			},
-		});
+			tls: {
+				rejectUnauthorized: false,
+			},
+		} as any);
 	}
 
 	// Factory method
 	public static async createTestTransporter(): Promise<Transporter> {
 		// Generate test SMTP service account from ethereal.email
 		// Only needed if you don't have a real mail account for testing
-		let testAccount = await createTestAccount();
+		// let testAccount = await createTestAccount();
 
 		// create reusable transporter object using the default SMTP transport
 		return createTransport({
@@ -77,8 +62,8 @@ export class NodemailerEmailService implements IMailService {
 			port: 587,
 			secure: false, // true for 465, false for other ports
 			auth: {
-				user: testAccount.user, // generated ethereal user
-				pass: testAccount.pass, // generated ethereal password
+				user: "nikolas.herman5@ethereal.email", // generated ethereal user
+				pass: "prABqyBERaSQmmQr6d", // generated ethereal password
 			},
 		});
 	}

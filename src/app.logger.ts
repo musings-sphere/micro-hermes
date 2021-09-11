@@ -73,7 +73,7 @@ export class AppLogger implements LoggerService {
 			level: config.logger.level,
 			levels: customLevels.levels,
 			transports: [
-				process.env.NODE_ENV !== "development"
+				config.isProduction
 					? new transports.File(options.file)
 					: new transports.Console(options.console),
 			],
